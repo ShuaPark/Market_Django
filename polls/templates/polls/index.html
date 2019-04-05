@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+북마크 삭제
+{% endblock title %}
+
+{% block content %}
+    {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></li>  
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p> 투표할 내용이 없습니다 </p>
+    {% endif %}
+
+    {% comment %} <img src="{% static 'images/background.jpg' %}" alt="My image"/> {% endcomment %}
+
+    </body>
+</html>
+{% endblock content %}

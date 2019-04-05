@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+북마크 내용 보기
+{% endblock title %}
+
+{% block content %}
+<h1>{{object.site_name}}</h1>
+바로가기 : <a href="{{object.url}}">{{object.url}}</a>
+{% endblock content %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+북마크 삭제
+{% endblock title %}
+
+{% block content %}
+<div class="btn-group">
+<a href="{% url 'bookmark:add' %}" class="btn btn-info">북마크 추가하기</a>
+</div>
+<p></p>
+
+{{temp | safe}}
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">no</th>
+            <th scope="col">사이트</th>
+            <th scope="col">Url</th>
+            <th scope="col">편집하기</th>
+            <th scope="col">삭제</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    {% for bookmark in object_list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'bookmark:detail' pk=bookmark.id %}">{{bookmark.site_name}}</a></td>
+            <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
+            <td><a href="{% url 'bookmark:update' pk=bookmark.id %}" class="btn btn-success btn-sm">편집하기</a></td>
+            <td><a href="{% url 'bookmark:delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">삭제하기</a></td>
+        </tr>    
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+
+{% block pagination %}
+    {% if is_paginated %}
+        <ul class="pagination justify-content-center pagination-sm">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'bookmark:list' %}?page={{page_obj.has_previous_page_number}}"
+            tabindex="-1">이전 페이지</a>
+        </li>
+       {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">이전 페이지</a>
+        </li>    
+        {% endif %}
+
+        {% for object in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_obj.number == forloop.counter %}disabled{% endif %}">
+            <a class="page-link"  href="{{request.path}}?page={{forloop.counter}}">{{forloop.counter}}</a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item"> 
+            <a class="page-link" href="{% url 'bookmark:list' %}?page={{page_obj.next_page_number}}">다음 페이지</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">다음 페이지</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+
+<div class="container">
+    <h2>Auto Complete Form</h2>
+    <input type="text" id="inputField">
+</div>
+<script>
+    $(function(){
+        var data = [
+            "배추김치",
+            "무김치",
+            "콩나물",
+            "Cake - Banana",
+            "Cake - Carrot",
+            "Cake - Strawberry",
+            "Candy - Apple",
+            "Candy - Orange",
+            "Candy - Strawberry",
+            "Juice - Apple",
+            "Juice - Carrot",
+            "Juice - Grape",
+            "Juice - Orange"
+        ];
+         
+        $("#inputField").autocomplete({
+            source:data
+        });
+    });
+</script>
+
+{% endblock %}

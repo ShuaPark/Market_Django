@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Photo 목록
+{% endblock title %}
+
+
+{% block content %}
+    {% for post in photos %}
+    <div class='row'>
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <p><img src="{{post.photo.url}}" style="width:100%;"></p>
+            <button type="button" class="btn btn-xs btn-info">
+            {{post.author.username}}</button>
+            <p>{{post.text|linebreaksbr}}</p> <!--문자열들을 br 태그로 줄바꿈-->
+            <a href="{% url 'photo:detail' pk=post.id %}"
+                class="btn btn-outline-djanger btn-sm float-right">댓글달기</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    {% endfor %}
+{% endblock content %}

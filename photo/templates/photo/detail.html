@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+
+    {% comment %} 
+    truncatechars : 화면에 출력할 문자열의 길이를 정의 
+    {% endcomment %}
+
+    {{object.text|truncatechars:10}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 panel panel-default">
+        <p><img src="{{object.photo.url}}" style="width:100%;"></p>
+        <button type="button" class="btn btn-outline-primary btn-sm">
+            {{object.author.username}}</button>
+        <p>{{object.text|linebreaksbr}}</p>
+
+        <a href="{% url 'photo:delete' pk=object.id %}" class="btn btn-outline-danger 
+            btn-sm float-right">삭제하기</a>
+        <a href="{% url 'photo:update' pk=object.id %}" class="btn btn-outline-danger 
+            btn-sm float-right">수정하기</a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock content %}

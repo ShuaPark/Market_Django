@@ -1,0 +1,22 @@
+body {
+    width:100%;
+    background: white url('/static/images/background.jpg');
+    /* background: url('{{STATIC_URL}}/images/background.jpg'); */
+    /* background: white url("{% static '/images/background.jpg' %}"); */
+    /* background-position: right bottom; */
+    /* background-position: center; Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}    
+
+li a {
+    color: green;
+}
+
+footer {
+    position: absolute;
+    left: 20;
+    bottom: 0;
+    height: 40px;
+    width: 90%;
+}

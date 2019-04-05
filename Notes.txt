@@ -1,0 +1,28 @@
+도서의 Appendix 목록 만들기
+
+showmigrations 45p
+dumpdata       45p
+loaddata       45p
+flush          45p
+dbshell        45p
+DoesNotExist   75p
+get_object_or_404  75p
+forloop.counter  77p
+
+ListView  80p
+DetailView 80p
+
+timezone.now()   88p
+datetime.timedelta() 88p
+
+<foreign key 관련 model link>
+StackedInline 84p
+TarbularInline  86p
+
+<GenericView 에서 지원하는 method들>
+template_name_suffix 108p, 113p
+
+form.as_p         109p
+reverse_lazy      108p
+success_url       108p
+get_absolute_url  115p (왜 필요한지를 이제야 알았다)
